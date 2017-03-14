@@ -1,0 +1,11 @@
+{
+    "name": "detaileague-rest-api",
+    "description": "The REST-API Server for Detaileague",
+    "version": "0.0.1",
+    "dependencies": {
+        "express" : "^4.15.2",
+        "body-parser": "^1.17.1",
+        "mysql": "^2.13.0",
+        "request" : "^2.80.0"
+    }
+}
