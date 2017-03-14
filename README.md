@@ -14,12 +14,18 @@ config.json - Example
     "mysqlHost" : "localhost",
     "mysqlUser" : "root",
     "mysqlPassword" : "",
-    "mysqlDatabase" : "detaileague"
+    "mysqlDatabase" : "detaileague",
+    "devKey" : <your dev key>
 
 Then run these commands...
 
-Console: npm install
+Console: "npm install"
 
-Console: node .
+Console: "node ." or "node index.js"
 
 Runs on localhost:3000
+
+Now we can test it with
+localhost:3000/api/v1/region/euw/summoner/Mute4win
+
+T.N. euw = region, Mute4win = Summonername.
