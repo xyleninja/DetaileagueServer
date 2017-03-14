@@ -28,7 +28,19 @@ exports.getSummoner = (req,res,database) => {
             {
                 //Yay Summoner found on our server. Now check if 20 minutes have passed.
                 if(Math.floor(Date.now() / 1000) - results[0].timeStamp >= 1200) {
-                    
+                    //Delete found entry
+
+                    sqlString = "DELETE FROM `summoners` WHERE `summoners`.`id` = " + results[0].id;
+
+                    database.execQuery(sqlString,
+                        function (results) {
+                            //Summoner deleted.
+                        },
+                        function (error) {
+                            res.send(error);
+                        });
+
+
                 } else {
                     res.send(results[0]);
                     return;

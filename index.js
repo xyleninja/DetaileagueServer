@@ -8,8 +8,16 @@ var services = require('./services/index.js');
 
 var app = express()
 
-app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+app.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,Authorization');
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    res.setHeader('cache-control', 'private, max-age=0, no-cache, no-store');
+    res.setHeader('pragma', 'no-cache');
+    next();
+});
 
 services.importAll(app,database);
 
