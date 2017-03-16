@@ -59,10 +59,12 @@ exports.getSummoner = (req,res,database) => {
                     return;
                 }
 
-                summoner['id'] = data['mute4win']['id'];
-                summoner['name'] = data['mute4win']['name'];
+                lowerSumName = summonerName.toLowerCase();
+
+                summoner['id'] = data[lowerSumName]['id'];
+                summoner['name'] = data[lowerSumName]['name'];
                 summoner['region'] = region.toLowerCase();
-                summoner['level'] = data['mute4win']['summonerLevel'];
+                summoner['level'] = data[lowerSumName]['summonerLevel'];
 
                 //Get Summoner from RIOT-API || normalWins - sdGames - sdWins
                 request('https://euw.api.pvp.net/api/lol/euw/v1.3/stats/by-summoner/' + summoner['id'] + '/summary?api_key=' + config.devKey, function(error, response, body) {
@@ -99,7 +101,7 @@ exports.getSummoner = (req,res,database) => {
                         if(flex3v3 != undefined) {
                             summoner['flex3v3'] = flex3v3['tier'];
                         } else summoner['flex3v3'] = "PROVISIONAL";
-                        if(soloDuo != undefined) {
+                        if(flex5v5 != undefined) {
                             summoner['flex5v5'] = flex5v5['tier'];
                         } else summoner['flex5v5'] = "PROVISIONAL";
 
